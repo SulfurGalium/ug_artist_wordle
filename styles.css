@@ -7,175 +7,12 @@ body {
   background-color: hsl(240, 3%, 7%);
   display: flex;
   flex-direction: column;
+  align-items: center;
   min-height: 100vh;
   margin: 0;
   padding: 1em;
   font-size: clamp(.5rem, 2.5vmin, 1.5rem);
-}
-
-.keyboard {
-  display: grid;
-  grid-template-columns: repeat(20, minmax(auto, 1.25em));
-  grid-auto-rows: 3em;
-  gap: .25em;
-  justify-content: center;
-}
-
-.key {
-  font-size: inherit;
-  grid-column: span 2;
-  border: none;
-  padding: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: hsl(
-    var(--hue, 200),
-    var(--saturation, 1%),
-    calc(var(--lightness-offset, 0%) + var(--lightness, 51%))
-  );
   color: white;
-  fill: white;
-  text-transform: uppercase;
-  border-radius: .25em;
-  cursor: pointer;
-  user-select: none;
-}
-
-.key.large {
-  grid-column: span 3;
-}
-
-.key > svg {
-  width: 1.75em;
-  height: 1.75em;
-}
-
-.key:hover, .key:focus {
-  --lightness-offset: 10%;
-}
-
-.key.wrong {
-  --lightness: 23%;
-}
-
-.key.wrong-location {
-  --hue: 49;
-  --saturation: 51%;
-  --lightness: 47%;
-}
-
-.key.correct {
-  --hue: 115;
-  --saturation: 29%;
-  --lightness: 43%;
-}
-
-.guess-grid {
-  display: grid;
-  justify-content: center;
-  align-content: center;
-  flex-grow: 1;
-  grid-template-columns: repeat(5, 4em);
-  grid-template-rows: repeat(6, 4em);
-  gap: .25em;
-  margin-bottom: 1em;
-}
-
-.tile {
-  font-size: 2em;
-  color: white;
-  border: .05em solid hsl(240, 2%, 23%);
-  text-transform: uppercase;
-  font-weight: bold;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  user-select: none;
-  transition: transform 250ms linear;
-}
-
-.tile[data-state="active"] {
-  border-color: hsl(200, 1%, 34%);
-}
-
-.tile[data-state="wrong"] {
-  border: none;
-  background-color: hsl(240, 2%, 23%);
-}
-
-.tile[data-state="wrong-location"] {
-  border: none;
-  background-color: hsl(49, 51%, 47%);
-}
-
-.tile[data-state="correct"] {
-  border: none;
-  background-color: hsl(115, 29%, 43%);
-}
-
-.tile.shake {
-  animation: shake 250ms ease-in-out;
-}
-
-.tile.dance {
-  animation: dance 500ms ease-in-out;
-}
-
-.tile.flip {
-  transform: rotateX(90deg);
-}
-
-@keyframes shake {
-  10% {
-    transform: translateX(-5%);
-  }
-
-  30% {
-    transform: translateX(5%);
-  }
-
-  50% {
-    transform: translateX(-7.5%);
-  }
-
-  70% {
-    transform: translateX(7.5%);
-  }
-
-  90% {
-    transform: translateX(-5%);
-  }
-
-  100% {
-    transform: translateX(0);
-  }
-}
-
-@keyframes dance {
-  20% {
-    transform: translateY(-50%);
-  }  
-
-  40% {
-    transform: translateY(5%);
-  }  
-
-  60% {
-    transform: translateY(-25%);
-  }  
-
-  80% {
-    transform: translateY(2.5%);
-  }  
-
-  90% {
-    transform: translateY(-5%);
-  }  
-
-  100% {
-    transform: translateY(0);
-  }
 }
 
 .alert-container {
@@ -192,17 +29,308 @@ body {
 .alert {
   pointer-events: none;
   background-color: hsl(204, 7%, 85%);
+  color: hsl(240, 3%, 7%);
   padding: .75em;
   border-radius: .25em;
   opacity: 1;
   transition: opacity 500ms ease-in-out;
   margin-bottom: .5em;
-}
-
-.alert:last-child {
-  margin-bottom: 0;
+  font-size: 1rem;
+  font-weight: bold;
+  white-space: nowrap;
 }
 
 .alert.hide {
   opacity: 0;
+}
+
+header {
+  width: 100%;
+  max-width: 900px;
+  text-align: center;
+  border-bottom: .05em solid hsl(240, 2%, 23%);
+  padding-bottom: .5em;
+  margin-bottom: 1em;
+}
+
+header h1 {
+  font-size: 2em;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  font-weight: bold;
+  margin: 0 0 .15em;
+}
+
+header p {
+  font-size: .75em;
+  color: hsl(200, 1%, 60%);
+  margin: 0;
+}
+
+.legend {
+  display: flex;
+  gap: 1.5em;
+  font-size: .7em;
+  color: hsl(200, 1%, 60%);
+  margin-bottom: 1em;
+}
+
+.legend span {
+  display: flex;
+  align-items: center;
+  gap: .4em;
+}
+
+.dot {
+  width: .7em;
+  height: .7em;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.dot.correct { background-color: hsl(115, 29%, 43%); }
+.dot.wrong   { background-color: hsl(240, 2%, 23%); border: 1px solid hsl(240, 2%, 40%); }
+
+.input-area {
+  display: flex;
+  gap: .5em;
+  margin-bottom: 1em;
+  width: 100%;
+  max-width: 900px;
+  position: relative;
+}
+
+.input-wrap {
+  position: relative;
+  flex: 1;
+}
+
+.input-area input[type="text"] {
+  width: 100%;
+  padding: .5em .75em;
+  background-color: hsl(240, 2%, 23%);
+  border: .05em solid hsl(200, 1%, 34%);
+  border-radius: .25em;
+  color: white;
+  font-size: 1rem;
+  font-family: Arial;
+  outline: none;
+}
+
+.input-area input[type="text"]:focus {
+  border-color: hsl(200, 1%, 51%);
+}
+
+.input-area input[type="text"]:disabled {
+  opacity: .4;
+}
+
+.suggestions {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  background-color: hsl(240, 2%, 15%);
+  border: .05em solid hsl(200, 1%, 34%);
+  border-radius: .25em;
+  z-index: 10;
+  max-height: 200px;
+  overflow-y: auto;
+  display: none;
+}
+
+.suggestions div {
+  padding: .5em .75em;
+  font-size: .85rem;
+  cursor: pointer;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+}
+
+.suggestions div:hover {
+  background-color: hsl(240, 2%, 23%);
+}
+
+.guess-btn {
+  font-size: inherit;
+  padding: .5em 1em;
+  background-color: hsl(200, 1%, 51%);
+  border: none;
+  border-radius: .25em;
+  color: white;
+  font-family: Arial;
+  text-transform: uppercase;
+  font-weight: bold;
+  letter-spacing: .05em;
+  cursor: pointer;
+  user-select: none;
+}
+
+.guess-btn:hover {
+  background-color: hsl(200, 1%, 61%);
+}
+
+.hint-btn {
+  font-size: inherit;
+  padding: .5em 1em;
+  background-color: hsl(50, 90%, 55%);
+  border: none;
+  border-radius: .25em;
+  color: hsl(240, 3%, 7%);
+  font-family: Arial;
+  text-transform: uppercase;
+  font-weight: bold;
+  letter-spacing: .05em;
+  cursor: pointer;
+  user-select: none;
+}
+
+.hint-btn:hover {
+  background-color: hsl(50, 90%, 65%);
+}
+
+.hint-btn:disabled {
+  background-color: hsl(240, 2%, 23%);
+  color: hsl(200, 1%, 40%);
+  cursor: default;
+}
+
+.hint-text {
+  width: 100%;
+  max-width: 900px;
+  color: hsl(120, 35%, 70%);
+  font-size: .8em;
+  margin: 0 0 1em;
+  min-height: 1.3em;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+}
+
+.guess-btn:disabled {
+  background-color: hsl(240, 2%, 23%);
+  color: hsl(200, 1%, 40%);
+  cursor: default;
+}
+
+.guesses-left {
+  font-size: .7em;
+  color: hsl(200, 1%, 51%);
+  margin-bottom: .75em;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  min-height: 1.2em;
+}
+
+.grid-wrap {
+  width: 100%;
+  max-width: 900px;
+  overflow-x: auto;
+  margin-bottom: 1em;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 560px;
+}
+
+thead th {
+  padding: .4em .5em;
+  text-align: center;
+  color: hsl(200, 1%, 51%);
+  font-size: .6em;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  border-bottom: .05em solid hsl(240, 2%, 23%);
+  font-family: Arial;
+}
+
+thead th:first-child { text-align: left; }
+
+.guess-row td {
+  padding: .4em .5em;
+  text-align: center;
+  border-bottom: .05em solid hsl(240, 2%, 15%);
+  vertical-align: middle;
+}
+
+.guess-row td:first-child {
+  text-align: left;
+  font-weight: bold;
+  font-size: .75em;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  color: white;
+}
+
+.cell {
+  display: inline-block;
+  padding: .3em .5em;
+  border-radius: .25em;
+  font-size: .65em;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: .03em;
+  user-select: none;
+}
+
+.cell.correct {
+  background-color: hsl(115, 29%, 43%);
+  color: white;
+}
+
+.cell.wrong {
+  background-color: hsl(240, 2%, 23%);
+  color: hsl(200, 1%, 70%);
+}
+
+.reset-btn {
+  font-size: inherit;
+  padding: .5em 1.5em;
+  background-color: hsl(115, 29%, 43%);
+  border: none;
+  border-radius: .25em;
+  color: white;
+  font-family: Arial;
+  text-transform: uppercase;
+  font-weight: bold;
+  letter-spacing: .05em;
+  cursor: pointer;
+  user-select: none;
+  display: none;
+  margin-top: .5em;
+}
+
+.reset-btn:hover {
+  background-color: hsl(115, 29%, 50%);
+}
+
+.confetti {
+  pointer-events: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 999;
+}
+
+.confetti-piece {
+  position: absolute;
+  top: -2rem;
+  border-radius: 20%;
+  animation: confetti-fall 2.7s ease-out forwards;
+}
+
+@keyframes confetti-fall {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(110vh) rotate(720deg);
+    opacity: 0;
+  }
 }

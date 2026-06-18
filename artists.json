@@ -1,0 +1,382 @@
+[
+  {
+    "name": "070 Shake",
+    "gender": "Female",
+    "genre": "Alternative Hip Hop",
+    "region": "East",
+    "groups": "070",
+    "label_type": "Major",
+    "followers": 779379,
+    "hint": "070 breakout"
+  },
+  {
+    "name": "Cities Aviv",
+    "gender": "Male",
+    "genre": "Cloud Rap",
+    "region": "South",
+    "groups": "Solo",
+    "label_type": "Independent",
+    "followers": 99982,
+    "hint": "Could be huzz music"
+  },
+  {
+    "name": "BBY Goyard",
+    "gender": "Male",
+    "genre": "Trap",
+    "region": "South",
+    "groups": "Solo",
+    "label_type": "Independent",
+    "followers": 51275,
+    "hint": "Formerly Ty Pharoh"
+  },
+  {
+    "name": "Bladee",
+    "gender": "Male",
+    "genre": "Cloud Rap",
+    "region": "Europe",
+    "groups": "Drain Gang",
+    "label_type": "Independent",
+    "followers": 702502,
+    "hint": "Is he even underground? His most popular song features a line from 'Juno'"
+  },
+  {
+    "name": "Clams Casino",
+    "gender": "Male",
+    "genre": "Experimental Hip Hop",
+    "region": "East",
+    "groups": "Solo",
+    "label_type": "Independent",
+    "followers": 430212,
+    "hint": "That one Lil B sample"
+  },
+  {
+    "name": "Edward Skeletrix",
+    "gender": "Male",
+    "genre": "Cloud Rap",
+    "region": "Europe",
+    "groups": "Solo",
+    "label_type": "Independent",
+    "followers": 105696,
+    "hint": "'Have you ever been in love?'"
+  },
+  {
+    "name": "Fakemink",
+    "gender": "Male",
+    "genre": "Cloud Rap",
+    "region": "Europe",
+    "groups": "Solo",
+    "label_type": "Independent",
+    "followers": 548589,
+    "hint": "Indian Algerian out of Britain"
+  },
+  {
+    "name": "Lil Kawaii",
+    "gender": "Male",
+    "genre": "Emo Rap",
+    "region": "South",
+    "groups": "Solo",
+    "label_type": "Independent",
+    "followers": 1334,
+    "hint": "RIP, kawaii soundcloud rapper"
+  },
+  {
+    "name": "Lil Xan",
+    "gender": "Male",
+    "genre": "Emo Rap",
+    "region": "West",
+    "groups": "Solo",
+    "label_type": "Major",
+    "followers": 2374530,
+    "hint": "Total Xanarchy"
+  },
+  {
+    "name": "Nettspend",
+    "gender": "Male",
+    "genre": "Cloud Rap",
+    "region": "Midwest",
+    "groups": "Solo",
+    "label_type": "Independent",
+    "followers": 509082,
+    "hint": "'Hold my hand if you think it's for life'"
+  },
+  {
+    "name": "Phreshboyswag",
+    "gender": "Male",
+    "genre": "Cloud Rap",
+    "region": "Europe",
+    "groups": "Solo",
+    "label_type": "Independent",
+    "followers": 105220,
+    "hint": "British rapper that auntie got beef with"
+  },
+  {
+    "name": "Protect",
+    "gender": "Male",
+    "genre": "Cloud Rap",
+    "region": "East",
+    "groups": "Solo",
+    "label_type": "Independent",
+    "followers": 116430,
+    "hint": "'I'm balling hard I think that I could go pro'"
+  },
+  {
+    "name": "Robb Banks",
+    "gender": "Male",
+    "genre": "Trap",
+    "region": "South",
+    "groups": "Solo",
+    "label_type": "Independent",
+    "followers": 226168,
+    "hint": "'Jamaican underground'"
+  },
+  {
+    "name": "Smokedope2016",
+    "gender": "Male",
+    "genre": "Cloud Rap",
+    "region": "USA",
+    "groups": "Solo",
+    "label_type": "Independent",
+    "followers": 283916,
+    "hint": "2016LYFE"
+  },
+  {
+    "name": "Teezo Touchdown",
+    "gender": "Male",
+    "genre": "Alternative Hip Hop",
+    "region": "South",
+    "groups": "Solo",
+    "label_type": "Independent",
+    "followers": 494137,
+    "hint": "Has collabs with Drake, Travis Scott, Tyler the Creator, and Kendrick Lamar"
+  },
+  {
+    "name": "Trippie Redd",
+    "gender": "Male",
+    "genre": "Emo Rap",
+    "region": "South",
+    "groups": "Solo",
+    "label_type": "Major",
+    "followers": 11761066,
+    "hint": "'What what what' like I'm Playboi Carti"
+  },
+  {
+    "name": "Yabujin",
+    "gender": "Male",
+    "genre": "Cloud Rap",
+    "region": "Europe",
+    "groups": "Solo",
+    "label_type": "Independent",
+    "followers": 190454,
+    "hint": "Lithuanian affiliated with Bladee"
+  },
+  {
+    "name": "Yung Lean",
+    "gender": "Male",
+    "genre": "Cloud Rap",
+    "region": "Europe",
+    "groups": "Sad Boys",
+    "label_type": "Independent",
+    "followers": 1309371,
+    "hint": "King of Sweden"
+  },
+  {
+    "name": "Zukovstheworld",
+    "gender": "Male",
+    "genre": "Cloud Rap",
+    "region": "West",
+    "groups": "Solo",
+    "label_type": "Independent",
+    "followers": 15816,
+    "hint": "Has the firebender from Avatar in his name"
+  },
+  {
+    "name": "Buckshot",
+    "gender": "Male",
+    "genre": "Trip Hop",
+    "region": "USA",
+    "groups": "Solo",
+    "label_type": "Independent",
+    "followers": 141006,
+    "hint": "Collab with Fakemink on Fever"
+  },
+  {
+    "name": "Feng",
+    "gender": "Male",
+    "genre": "Trip Hop",
+    "region": "USA",
+    "groups": "Solo",
+    "label_type": "Independent",
+    "followers": 262214,
+    "hint": "You're my X, I'm your Y 'cause we go in separate ways"
+  },
+  {
+    "name": "Islurwhenitalk",
+    "gender": "Male",
+    "genre": "Jazz Rap",
+    "region": "USA",
+    "groups": "Solo",
+    "label_type": "Independent",
+    "followers": 18176,
+    "hint": "Scenecore ebk"
+  },
+  {
+    "name": "Jaydes",
+    "gender": "Male",
+    "genre": "Boom Bap",
+    "region": "USA",
+    "groups": "Solo",
+    "label_type": "Independent",
+    "followers": 545532,
+    "hint": "Poop pentagram"
+  },
+  {
+    "name": "JPEGMafia",
+    "gender": "Male",
+    "genre": "Experimental Hip Hop",
+    "region": "USA",
+    "groups": "Solo",
+    "label_type": "Independent",
+    "followers": 1080386,
+    "hint": "Random beef with Earl Sweatshirt"
+  },
+  {
+    "name": "Mario Judah",
+    "gender": "Male",
+    "genre": "Experimental Hip Hop",
+    "region": "USA",
+    "groups": "Mario Judah",
+    "label_type": "Major",
+    "followers": 281223,
+    "hint": "Whole lot of red before Carti"
+  },
+  {
+    "name": "Oklou",
+    "gender": "Female",
+    "genre": "Hyperpop",
+    "region": "Europe",
+    "groups": "Solo",
+    "label_type": "Independent",
+    "followers": 358000,
+    "hint": "Take me by the hand (feat. Bladee)"
+  },
+  {
+    "name": "Osamason",
+    "gender": "Male",
+    "genre": "Trap",
+    "region": "South",
+    "groups": "Solo",
+    "label_type": "Major",
+    "followers": 670552,
+    "hint": "Flex Musix"
+  },
+  {
+    "name": "9vicious",
+    "gender": "Male",
+    "genre": "Trap",
+    "region": "South",
+    "groups": "Solo",
+    "label_type": "Independent",
+    "followers": 85000,
+    "hint": "Athens, Georgia rapper co-signed by Young Thug"
+  },
+  {
+    "name": "ecco2k",
+    "gender": "Male",
+    "genre": "Cloud Rap",
+    "region": "Europe",
+    "groups": "Drain Gang",
+    "label_type": "Independent",
+    "followers": 420000,
+    "hint": "Best member of Drain Gang"
+  },
+  {
+    "name": "Thaiboy Digital",
+    "gender": "Male",
+    "genre": "Cloud Rap",
+    "region": "Europe",
+    "groups": "Drain Gang",
+    "label_type": "Independent",
+    "followers": 350000,
+    "hint": "Legendary member"
+  },
+  {
+    "name": "Dolldamage",
+    "gender": "Female",
+    "genre": "Hyperpop",
+    "region": "USA",
+    "groups": "Solo",
+    "label_type": "Independent",
+    "followers": 138000,
+    "hint": "Most popular song is Soda Candy"
+  },
+  {
+    "name": "Chase Icon",
+    "gender": "Female",
+    "genre": "Hyperpop",
+    "region": "West",
+    "groups": "Solo",
+    "label_type": "Independent",
+    "followers": 95000,
+    "hint": "Just like bubblegum"
+  },
+  {
+    "name": "Jane Remover",
+    "gender": "Female",
+    "genre": "Hyperpop",
+    "region": "East",
+    "groups": "Solo",
+    "label_type": "Independent",
+    "followers": 598000,
+    "hint": "Beef with Dabo"
+  },
+  {
+    "name": "Underscores",
+    "gender": "Female",
+    "genre": "Hyperpop",
+    "region": "West",
+    "groups": "Solo",
+    "label_type": "Independent",
+    "followers": 312000,
+    "hint": "Headphone hair"
+  },
+  {
+    "name": "Apollo Red",
+    "gender": "Male",
+    "genre": "Trap",
+    "region": "South",
+    "groups": "YVL",
+    "label_type": "Independent",
+    "followers": 12000,
+    "hint": "YVL's underrated slider"
+  },
+  {
+    "name": "bleeod",
+    "gender": "Male",
+    "genre": "Experimental Hip Hop",
+    "region": "South",
+    "groups": "Solo",
+    "label_type": "Independent",
+    "followers": 45000,
+    "hint": "YVL's underrated slider"
+  },
+  {
+    "name": "Rich Amiri",
+    "gender": "Male",
+    "genre": "Trap",
+    "region": "East",
+    "groups": "Solo",
+    "label_type": "Major",
+    "followers": 410000,
+    "hint": "YVL's underrated slider"
+  },
+  {
+    "name": "Jim Legxacy",
+    "gender": "Male",
+    "genre": "Alternative Hip Hop",
+    "region": "Europe",
+    "groups": "Solo",
+    "label_type": "Independent",
+    "followers": 85000,
+    "hint": "'Black British Musicians' tag"
+  }
+]
