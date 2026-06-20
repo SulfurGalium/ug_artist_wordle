@@ -41,6 +41,14 @@ async function loadRappers() {
 // GAME LOGIC
 // ============================================================
 const CATS = ["gender","genre","region","groups","label","followers"];
+const CAT_LABELS = {
+  gender: "Gender",
+  genre: "Genre",
+  region: "Region",
+  groups: "Group",
+  label: "Label type",
+  followers: "Followers"
+};
 const MAX_GUESSES = 6;
 const HINTERS = [
   rap => `This artist is from ${rap.region}.`,
@@ -49,7 +57,10 @@ const HINTERS = [
   rap => `Genre clue: ${rap.genre}.`,
   rap => `Followers clue: ${rap.followers}.`
 ];
-let answer, guesses, gameOver, hintUsed;
+let answer = null;
+let guesses = [];
+let gameOver = true;
+let hintUsed = false;
 
 function showAlert(msg, duration = 1800) {
   const container = document.getElementById("alert-container");
@@ -64,7 +75,7 @@ function showAlert(msg, duration = 1800) {
 }
 
 function showHint() {
-  if (gameOver || hintUsed) return;
+  if (gameOver || hintUsed || !answer) return;
   const hintText = document.getElementById("hint-text");
   const hint = answer.hint
     ? answer.hint
@@ -75,11 +86,23 @@ function showHint() {
 }
 
 function pickAnswer() {
+  if (!RAPPERS.length) return null;
   return RAPPERS[Math.floor(Math.random() * RAPPERS.length)];
 }
 
 function resetGame() {
   answer = pickAnswer();
+  if (!answer) {
+    gameOver = true;
+    document.getElementById("guess-body").innerHTML = "";
+    document.getElementById("guess-input").disabled = true;
+    document.getElementById("guess-btn").disabled = true;
+    document.getElementById("hint-btn").disabled = true;
+    document.getElementById("hint-text").textContent = "Artist data could not be loaded.";
+    document.getElementById("guesses-left").textContent = "";
+    document.getElementById("reset-btn").style.display = "none";
+    return;
+  }
   guesses = [];
   gameOver = false;
   hintUsed = false;
@@ -106,7 +129,7 @@ function updateLeft() {
 }
 
 function submitGuess() {
-  if (gameOver) return;
+  if (gameOver || !answer) return;
   const val = document.getElementById("guess-input").value.trim();
   const rapper = RAPPERS.find(r => r.name.toLowerCase() === val.toLowerCase());
   if (!rapper) { showAlert("Not in the list — check spelling."); return; }
@@ -156,6 +179,7 @@ function endGame() {
   gameOver = true;
   document.getElementById("guess-btn").disabled = true;
   document.getElementById("guess-input").disabled = true;
+  document.getElementById("hint-btn").disabled = true;
   document.getElementById("guesses-left").textContent = "";
   document.getElementById("reset-btn").style.display = "inline-block";
 }
@@ -166,11 +190,13 @@ function renderRow(rapper) {
   tr.className = "guess-row";
 
   const nameTd = document.createElement("td");
+  nameTd.dataset.label = "Rapper";
   nameTd.textContent = rapper.name;
   tr.appendChild(nameTd);
 
   CATS.forEach(cat => {
     const td = document.createElement("td");
+    td.dataset.label = CAT_LABELS[cat];
     const span = document.createElement("span");
     
     let isMatch = rapper[cat] === answer[cat];
@@ -197,8 +223,9 @@ const sugBox = document.getElementById("suggestions");
 input.addEventListener("input", () => {
   const q = input.value.trim().toLowerCase();
   if (!q) { sugBox.style.display = "none"; return; }
+  const guessed = guesses || [];
   const matches = RAPPERS.filter(r =>
-    r.name.toLowerCase().includes(q) && !guesses.find(g => g.name === r.name)
+    r.name.toLowerCase().includes(q) && !guessed.find(g => g.name === r.name)
   );
   if (!matches.length) { sugBox.style.display = "none"; return; }
   sugBox.innerHTML = "";

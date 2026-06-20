@@ -10,8 +10,8 @@ body {
   align-items: center;
   min-height: 100vh;
   margin: 0;
-  padding: 1em;
-  font-size: clamp(.5rem, 2.5vmin, 1.5rem);
+  padding: clamp(.75rem, 3vw, 1rem);
+  font-size: 1rem;
   color: white;
 }
 
@@ -37,7 +37,8 @@ body {
   margin-bottom: .5em;
   font-size: 1rem;
   font-weight: bold;
-  white-space: nowrap;
+  max-width: min(90vw, 32rem);
+  text-align: center;
 }
 
 .alert.hide {
@@ -54,8 +55,8 @@ header {
 }
 
 header h1 {
-  font-size: 2em;
-  letter-spacing: .1em;
+  font-size: clamp(1.45rem, 6vw, 2rem);
+  letter-spacing: .06em;
   text-transform: uppercase;
   font-weight: bold;
   margin: 0 0 .15em;
@@ -69,6 +70,8 @@ header p {
 
 .legend {
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 1.5em;
   font-size: .7em;
   color: hsl(200, 1%, 60%);
@@ -93,6 +96,7 @@ header p {
 
 .input-area {
   display: flex;
+  flex-wrap: wrap;
   gap: .5em;
   margin-bottom: 1em;
   width: 100%;
@@ -153,6 +157,7 @@ header p {
 }
 
 .guess-btn {
+  flex: 0 0 auto;
   font-size: inherit;
   padding: .5em 1em;
   background-color: hsl(200, 1%, 51%);
@@ -172,6 +177,7 @@ header p {
 }
 
 .hint-btn {
+  flex: 0 0 auto;
   font-size: inherit;
   padding: .5em 1em;
   background-color: hsl(50, 90%, 55%);
@@ -200,7 +206,7 @@ header p {
   width: 100%;
   max-width: 900px;
   color: hsl(120, 35%, 70%);
-  font-size: .8em;
+  font-size: .8rem;
   margin: 0 0 1em;
   min-height: 1.3em;
   text-transform: uppercase;
@@ -225,7 +231,6 @@ header p {
 .grid-wrap {
   width: 100%;
   max-width: 900px;
-  overflow-x: auto;
   margin-bottom: 1em;
 }
 
@@ -239,7 +244,7 @@ thead th {
   padding: .4em .5em;
   text-align: center;
   color: hsl(200, 1%, 51%);
-  font-size: .6em;
+  font-size: .7rem;
   text-transform: uppercase;
   letter-spacing: .08em;
   border-bottom: .05em solid hsl(240, 2%, 23%);
@@ -258,7 +263,7 @@ thead th:first-child { text-align: left; }
 .guess-row td:first-child {
   text-align: left;
   font-weight: bold;
-  font-size: .75em;
+  font-size: .8rem;
   text-transform: uppercase;
   letter-spacing: .05em;
   color: white;
@@ -266,9 +271,11 @@ thead th:first-child { text-align: left; }
 
 .cell {
   display: inline-block;
+  max-width: 100%;
+  overflow-wrap: anywhere;
   padding: .3em .5em;
   border-radius: .25em;
-  font-size: .65em;
+  font-size: .72rem;
   font-weight: bold;
   text-transform: uppercase;
   letter-spacing: .03em;
@@ -332,5 +339,110 @@ thead th:first-child { text-align: left; }
   100% {
     transform: translateY(110vh) rotate(720deg);
     opacity: 0;
+  }
+}
+
+@media (max-width: 640px) {
+  body {
+    align-items: stretch;
+  }
+
+  header,
+  .input-area,
+  .hint-text,
+  .grid-wrap {
+    max-width: none;
+  }
+
+  header h1 {
+    line-height: 1.15;
+  }
+
+  .input-area {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .input-wrap {
+    grid-column: 1 / -1;
+  }
+
+  .guess-btn,
+  .hint-btn,
+  .reset-btn {
+    width: 100%;
+    min-height: 2.75rem;
+  }
+
+  .suggestions div {
+    font-size: .95rem;
+    padding: .8rem;
+  }
+
+  .grid-wrap {
+    overflow: visible;
+  }
+
+  table,
+  tbody,
+  tr,
+  td {
+    display: block;
+    width: 100%;
+  }
+
+  table {
+    min-width: 0;
+  }
+
+  thead {
+    display: none;
+  }
+
+  tbody {
+    display: grid;
+    gap: .75rem;
+  }
+
+  .guess-row {
+    border: .05em solid hsl(240, 2%, 23%);
+    border-radius: .35rem;
+    background-color: hsl(240, 2%, 11%);
+    overflow: hidden;
+  }
+
+  .guess-row td,
+  .guess-row td:first-child {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: .75rem;
+    padding: .65rem .75rem;
+    text-align: right;
+    border-bottom: .05em solid hsl(240, 2%, 18%);
+    font-size: .9rem;
+    letter-spacing: 0;
+  }
+
+  .guess-row td:last-child {
+    border-bottom: 0;
+  }
+
+  .guess-row td::before {
+    content: attr(data-label);
+    flex: 0 0 auto;
+    color: hsl(200, 1%, 60%);
+    font-size: .72rem;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+
+  .guess-row td:first-child {
+    background-color: hsl(240, 2%, 15%);
+  }
+
+  .cell {
+    font-size: .8rem;
+    text-align: right;
   }
 }
