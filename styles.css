@@ -4,7 +4,7 @@
 }
 
 body {
-  background-color: hsl(240, 3%, 7%);
+  background-color: #121213;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -28,8 +28,8 @@ body {
 
 .alert {
   pointer-events: none;
-  background-color: hsl(204, 7%, 85%);
-  color: hsl(240, 3%, 7%);
+  background-color: #d7dadc;
+  color: #121213;
   padding: .75em;
   border-radius: .25em;
   opacity: 1;
@@ -49,7 +49,7 @@ header {
   width: 100%;
   max-width: 900px;
   text-align: center;
-  border-bottom: .05em solid hsl(240, 2%, 23%);
+  border-bottom: 1px solid #3a3a3c;
   padding-bottom: .5em;
   margin-bottom: 1em;
 }
@@ -64,7 +64,7 @@ header h1 {
 
 header p {
   font-size: .75em;
-  color: hsl(200, 1%, 60%);
+  color: #818384;
   margin: 0;
 }
 
@@ -74,7 +74,7 @@ header p {
   justify-content: center;
   gap: 1.5em;
   font-size: .7em;
-  color: hsl(200, 1%, 60%);
+  color: #818384;
   margin-bottom: 1em;
 }
 
@@ -91,8 +91,8 @@ header p {
   display: inline-block;
 }
 
-.dot.correct { background-color: hsl(115, 29%, 43%); }
-.dot.wrong   { background-color: hsl(240, 2%, 23%); border: 1px solid hsl(240, 2%, 40%); }
+.dot.correct { background-color: #538d4e; }
+.dot.wrong   { background-color: #3a3a3c; border: 1px solid #565758; }
 
 .input-area {
   display: flex;
@@ -111,10 +111,11 @@ header p {
 
 .input-area input[type="text"] {
   width: 100%;
-  padding: .5em .75em;
-  background-color: hsl(240, 2%, 23%);
-  border: .05em solid hsl(200, 1%, 34%);
-  border-radius: .25em;
+  min-height: 3rem;
+  padding: .65em .85em;
+  background-color: #121213;
+  border: 2px solid #3a3a3c;
+  border-radius: 2px;
   color: white;
   font-size: 1rem;
   font-family: Arial;
@@ -122,7 +123,7 @@ header p {
 }
 
 .input-area input[type="text"]:focus {
-  border-color: hsl(200, 1%, 51%);
+  border-color: #565758;
 }
 
 .input-area input[type="text"]:disabled {
@@ -134,9 +135,9 @@ header p {
   top: calc(100% + 4px);
   left: 0;
   right: 0;
-  background-color: hsl(240, 2%, 15%);
-  border: .05em solid hsl(200, 1%, 34%);
-  border-radius: .25em;
+  background-color: #121213;
+  border: 2px solid #3a3a3c;
+  border-radius: 2px;
   z-index: 10;
   max-height: 200px;
   overflow-y: auto;
@@ -153,16 +154,17 @@ header p {
 }
 
 .suggestions div:hover {
-  background-color: hsl(240, 2%, 23%);
+  background-color: #3a3a3c;
 }
 
 .guess-btn {
   flex: 0 0 auto;
   font-size: inherit;
-  padding: .5em 1em;
-  background-color: hsl(200, 1%, 51%);
+  min-height: 3rem;
+  padding: .65em 1.1em;
+  background-color: #538d4e;
   border: none;
-  border-radius: .25em;
+  border-radius: 2px;
   color: white;
   font-family: Arial;
   text-transform: uppercase;
@@ -173,17 +175,18 @@ header p {
 }
 
 .guess-btn:hover {
-  background-color: hsl(200, 1%, 61%);
+  background-color: #6aaa64;
 }
 
 .hint-btn {
   flex: 0 0 auto;
   font-size: inherit;
-  padding: .5em 1em;
-  background-color: hsl(50, 90%, 55%);
+  min-height: 3rem;
+  padding: .65em 1.1em;
+  background-color: #b59f3b;
   border: none;
-  border-radius: .25em;
-  color: hsl(240, 3%, 7%);
+  border-radius: 2px;
+  color: white;
   font-family: Arial;
   text-transform: uppercase;
   font-weight: bold;
@@ -193,19 +196,19 @@ header p {
 }
 
 .hint-btn:hover {
-  background-color: hsl(50, 90%, 65%);
+  background-color: #c9b458;
 }
 
 .hint-btn:disabled {
-  background-color: hsl(240, 2%, 23%);
-  color: hsl(200, 1%, 40%);
+  background-color: #3a3a3c;
+  color: #818384;
   cursor: default;
 }
 
 .hint-text {
   width: 100%;
   max-width: 900px;
-  color: hsl(120, 35%, 70%);
+  color: #c9b458;
   font-size: .8rem;
   margin: 0 0 1em;
   min-height: 1.3em;
@@ -214,14 +217,14 @@ header p {
 }
 
 .guess-btn:disabled {
-  background-color: hsl(240, 2%, 23%);
-  color: hsl(200, 1%, 40%);
+  background-color: #3a3a3c;
+  color: #818384;
   cursor: default;
 }
 
 .guesses-left {
   font-size: .7em;
-  color: hsl(200, 1%, 51%);
+  color: #818384;
   margin-bottom: .75em;
   text-transform: uppercase;
   letter-spacing: .05em;
@@ -241,22 +244,22 @@ table {
 }
 
 thead th {
-  padding: .4em .5em;
+  padding: .6em .5em;
   text-align: center;
-  color: hsl(200, 1%, 51%);
+  color: #818384;
   font-size: .7rem;
   text-transform: uppercase;
   letter-spacing: .08em;
-  border-bottom: .05em solid hsl(240, 2%, 23%);
+  border-bottom: 2px solid #3a3a3c;
   font-family: Arial;
 }
 
 thead th:first-child { text-align: left; }
 
 .guess-row td {
-  padding: .4em .5em;
+  padding: .45rem .35rem;
   text-align: center;
-  border-bottom: .05em solid hsl(240, 2%, 15%);
+  border-bottom: 1px solid #3a3a3c;
   vertical-align: middle;
 }
 
@@ -270,12 +273,16 @@ thead th:first-child { text-align: left; }
 }
 
 .cell {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 5.25rem;
+  min-height: 3.25rem;
   max-width: 100%;
   overflow-wrap: anywhere;
-  padding: .3em .5em;
-  border-radius: .25em;
-  font-size: .72rem;
+  padding: .4rem .55rem;
+  border-radius: 2px;
+  font-size: .78rem;
   font-weight: bold;
   text-transform: uppercase;
   letter-spacing: .03em;
@@ -283,21 +290,22 @@ thead th:first-child { text-align: left; }
 }
 
 .cell.correct {
-  background-color: hsl(115, 29%, 43%);
+  background-color: #538d4e;
   color: white;
 }
 
 .cell.wrong {
-  background-color: hsl(240, 2%, 23%);
-  color: hsl(200, 1%, 70%);
+  background-color: #3a3a3c;
+  color: #d7dadc;
 }
 
 .reset-btn {
   font-size: inherit;
-  padding: .5em 1.5em;
-  background-color: hsl(115, 29%, 43%);
+  min-height: 3rem;
+  padding: .7em 1.5em;
+  background-color: #538d4e;
   border: none;
-  border-radius: .25em;
+  border-radius: 2px;
   color: white;
   font-family: Arial;
   text-transform: uppercase;
@@ -310,7 +318,7 @@ thead th:first-child { text-align: left; }
 }
 
 .reset-btn:hover {
-  background-color: hsl(115, 29%, 50%);
+  background-color: #6aaa64;
 }
 
 .confetti {
@@ -405,9 +413,9 @@ thead th:first-child { text-align: left; }
   }
 
   .guess-row {
-    border: .05em solid hsl(240, 2%, 23%);
-    border-radius: .35rem;
-    background-color: hsl(240, 2%, 11%);
+    border: 2px solid #3a3a3c;
+    border-radius: 2px;
+    background-color: #121213;
     overflow: hidden;
   }
 
@@ -419,7 +427,7 @@ thead th:first-child { text-align: left; }
     gap: .75rem;
     padding: .65rem .75rem;
     text-align: right;
-    border-bottom: .05em solid hsl(240, 2%, 18%);
+    border-bottom: 1px solid #3a3a3c;
     font-size: .9rem;
     letter-spacing: 0;
   }
@@ -431,18 +439,20 @@ thead th:first-child { text-align: left; }
   .guess-row td::before {
     content: attr(data-label);
     flex: 0 0 auto;
-    color: hsl(200, 1%, 60%);
+    color: #818384;
     font-size: .72rem;
     font-weight: bold;
     text-transform: uppercase;
   }
 
   .guess-row td:first-child {
-    background-color: hsl(240, 2%, 15%);
+    background-color: #1a1a1b;
   }
 
   .cell {
     font-size: .8rem;
     text-align: right;
+    min-width: 7rem;
+    min-height: 3rem;
   }
 }

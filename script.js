@@ -62,6 +62,30 @@ let guesses = [];
 let gameOver = true;
 let hintUsed = false;
 
+function getUtcDaySeed() {
+  return new Date().toISOString().slice(0, 10);
+}
+
+function hashSeed(seed) {
+  let hash = 2166136261;
+  for (let i = 0; i < seed.length; i += 1) {
+    hash ^= seed.charCodeAt(i);
+    hash = Math.imul(hash, 16777619);
+  }
+  return hash >>> 0;
+}
+
+function seededRandom(seed) {
+  let value = hashSeed(seed);
+  return function nextRandom() {
+    value += 0x6D2B79F5;
+    let t = value;
+    t = Math.imul(t ^ (t >>> 15), t | 1);
+    t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+}
+
 function showAlert(msg, duration = 1800) {
   const container = document.getElementById("alert-container");
   const el = document.createElement("div");
@@ -90,8 +114,14 @@ function pickAnswer() {
   return RAPPERS[Math.floor(Math.random() * RAPPERS.length)];
 }
 
-function resetGame() {
-  answer = pickAnswer();
+function pickDailyAnswer() {
+  if (!RAPPERS.length) return null;
+  const random = seededRandom(getUtcDaySeed());
+  return RAPPERS[Math.floor(random() * RAPPERS.length)];
+}
+
+function resetGame(mode = "daily") {
+  answer = mode === "random" ? pickAnswer() : pickDailyAnswer();
   if (!answer) {
     gameOver = true;
     document.getElementById("guess-body").innerHTML = "";
@@ -155,7 +185,7 @@ function showConfetti() {
   const container = document.getElementById("confetti");
   if (!container) return;
   container.innerHTML = "";
-  const colors = ["#ef476f", "#ffd166", "#06d6a0", "#118ab2", "#073b4c"];
+  const colors = ["#538d4e", "#b59f3b", "#3a3a3c", "#d7dadc"];
 
   for (let i = 0; i < 35; i += 1) {
     const piece = document.createElement("div");
