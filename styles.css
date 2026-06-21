@@ -321,6 +321,64 @@ thead th:first-child { text-align: left; }
   background-color: #6aaa64;
 }
 
+.site-footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  width: 100%;
+  max-width: 900px;
+  margin-top: auto;
+  padding-top: 2rem;
+  color: #818384;
+  font-size: .8rem;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+}
+
+a {
+  color: #d7dadc;
+}
+
+.site-footer a,
+.back-link {
+  color: #818384;
+  text-decoration: none;
+}
+
+.site-footer a:hover,
+.back-link:hover,
+.info-page a:hover {
+  color: #d7dadc;
+  text-decoration: underline;
+}
+
+.info-page {
+  width: 100%;
+  max-width: 720px;
+  margin: 0 auto;
+  line-height: 1.55;
+}
+
+.info-page h1 {
+  margin: 1rem 0;
+  font-size: clamp(1.75rem, 6vw, 2.5rem);
+  text-transform: uppercase;
+  letter-spacing: .04em;
+}
+
+.info-page h2 {
+  margin: 1.5rem 0 .5rem;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+}
+
+.info-page p {
+  margin: 0 0 1rem;
+  color: #d7dadc;
+}
+
 .confetti {
   pointer-events: none;
   position: fixed;
