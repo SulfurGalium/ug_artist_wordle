@@ -68,6 +68,21 @@ header p {
   margin: 0;
 }
 
+.ad-slot {
+  width: 100%;
+  max-width: 900px;
+  min-height: 90px;
+  margin: 0 0 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.ad-slot .adsbygoogle {
+  width: 100%;
+}
+
 .legend {
   display: flex;
   flex-wrap: wrap;
