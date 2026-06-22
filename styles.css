@@ -72,6 +72,7 @@ header p {
   width: 100%;
   max-width: 900px;
   min-height: 90px;
+  max-height: 120px;
   margin: 0 0 1rem;
   display: flex;
   align-items: center;
@@ -462,6 +463,12 @@ a {
 
   .grid-wrap {
     overflow: visible;
+  }
+
+  .ad-slot {
+    min-height: 50px;
+    max-height: 70px;
+    margin-bottom: .75rem;
   }
 
   table,
