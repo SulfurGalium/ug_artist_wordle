@@ -108,6 +108,7 @@ header p {
 }
 
 .dot.correct { background-color: #538d4e; }
+.dot.partial { background-color: #b59f3b; }
 .dot.wrong   { background-color: #3a3a3c; border: 1px solid #565758; }
 
 .input-area {
@@ -251,12 +252,13 @@ header p {
   width: 100%;
   max-width: 900px;
   margin-bottom: 1em;
+  overflow-x: auto;
 }
 
 table {
   width: 100%;
   border-collapse: collapse;
-  min-width: 560px;
+  min-width: 640px;
 }
 
 thead th {
@@ -310,9 +312,29 @@ thead th:first-child { text-align: left; }
   color: white;
 }
 
+.cell.partial {
+  background-color: #b59f3b;
+  color: white;
+}
+
 .cell.wrong {
   background-color: #3a3a3c;
   color: #d7dadc;
+}
+
+/* Genre column holds 3 stacked sub-cells, one per genre slot */
+.genre-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: .3rem;
+  align-items: stretch;
+}
+
+.genre-cell {
+  min-height: 1.9rem;
+  min-width: 6.5rem;
+  font-size: .68rem;
+  width: 100%;
 }
 
 .reset-btn {
@@ -534,5 +556,15 @@ a {
     text-align: right;
     min-width: 7rem;
     min-height: 3rem;
+  }
+
+  .genre-wrap {
+    flex: 1;
+    align-items: stretch;
+  }
+
+  .genre-cell {
+    min-width: 0;
+    font-size: .75rem;
   }
 }

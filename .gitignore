@@ -1,5 +1,6 @@
 wikicaches.zip
 .venv
 artists - og.json
+artists - old.json
 enrich_artists.py
 fetch_spotify_followers.py

@@ -11,13 +11,37 @@ function formatFollowers(value) {
   return String(value);
 }
 
+// "Experimental, Rage, Hyperpop" -> ["Experimental", "Rage", "Hyperpop"]
+// Always normalized to exactly 3 slots (padded with "Unknown" if short).
+function parseGenres(value) {
+  const parts = (value || "")
+    .split(",")
+    .map(s => s.trim())
+    .filter(Boolean);
+  while (parts.length < 3) parts.push("Unknown");
+  return parts.slice(0, 3);
+}
+
+// "London, UK" -> { city: "London", country: "UK", direction: null }
+// "Atlanta, US, South" -> { city: "Atlanta", country: "US", direction: "South" }
+function parseRegion(value) {
+  const parts = (value || "")
+    .split(",")
+    .map(s => s.trim())
+    .filter(Boolean);
+  return {
+    city: parts[0] || "Unknown",
+    country: parts[1] || parts[0] || "Unknown",
+    direction: parts[2] || null
+  };
+}
+
 function normalizeRapper(item) {
   return {
     name: item.name || "",
-    gender: item.gender || "Unknown",
-    genre: item.genre || "Unknown",
-    region: item.region || "Unknown",
-    groups: item.groups || "Solo",
+    biggestCollab: item.biggest_collab || item.biggestCollab || "Unknown",
+    genres: parseGenres(item.genre),
+    region: parseRegion(item.region),
     label: item.label || item.label_type || "Unknown",
     followers: formatFollowers(item.followers),
     followersCount: typeof item.followers === "number" ? item.followers : 0,
@@ -40,21 +64,12 @@ async function loadRappers() {
 // ============================================================
 // GAME LOGIC
 // ============================================================
-const CATS = ["gender","genre","region","groups","label","followers"];
-const CAT_LABELS = {
-  gender: "Gender",
-  genre: "Genre",
-  region: "Region",
-  groups: "Group",
-  label: "Label type",
-  followers: "Followers"
-};
 const MAX_GUESSES = 6;
 const HINTERS = [
-  rap => `This artist is from ${rap.region}.`,
+  rap => `This artist is from ${rap.region.country}${rap.region.direction ? ` (${rap.region.direction})` : ""}.`,
   rap => `Label type: ${rap.label}.`,
-  rap => rap.groups === "Solo" ? "This rapper performs solo." : `Part of ${rap.groups}.`,
-  rap => `Genre clue: ${rap.genre}.`,
+  rap => `Biggest collab: ${rap.biggestCollab}.`,
+  rap => `One of their genres: ${rap.genres[Math.floor(Math.random() * rap.genres.length)]}.`,
   rap => `Followers clue: ${rap.followers}.`
 ];
 let answer = null;
@@ -214,6 +229,26 @@ function endGame() {
   document.getElementById("reset-btn").style.display = "inline-block";
 }
 
+// Genre matching is order-independent: a guessed genre is "correct" (green)
+// if it appears anywhere in the answer's 3 genres, regardless of which slot
+// it's in. No partial/yellow tier for genre — position doesn't matter.
+function matchGenres(guessGenres, answerGenres) {
+  return guessGenres.map(g => (answerGenres.includes(g) ? "correct" : "wrong"));
+}
+
+// Region match is a single cell: full match (country + direction) is
+// "correct", same country but different US direction is "partial",
+// different country entirely is "wrong".
+function matchRegion(guessRegion, answerRegion) {
+  if (guessRegion.country !== answerRegion.country) return "wrong";
+  if ((guessRegion.direction || null) === (answerRegion.direction || null)) return "correct";
+  return "partial";
+}
+
+function regionDisplay(region) {
+  return region.direction ? `${region.country} · ${region.direction}` : region.country;
+}
+
 function renderRow(rapper) {
   const tbody = document.getElementById("guess-body");
   const tr = document.createElement("tr");
@@ -224,25 +259,69 @@ function renderRow(rapper) {
   nameTd.textContent = rapper.name;
   tr.appendChild(nameTd);
 
-  CATS.forEach(cat => {
-    const td = document.createElement("td");
-    td.dataset.label = CAT_LABELS[cat];
+  // Genre: 3 sub-cells in one column
+  const genreTd = document.createElement("td");
+  genreTd.dataset.label = "Genre";
+  const genreWrap = document.createElement("div");
+  genreWrap.className = "genre-wrap";
+  const genreResults = matchGenres(rapper.genres, answer.genres);
+  rapper.genres.forEach((g, i) => {
     const span = document.createElement("span");
-    
-    let isMatch = rapper[cat] === answer[cat];
-    let displayText = rapper[cat];
-    
-    // Special handling for followers: add arrow if counts differ
-    if (cat === "followers" && !isMatch && rapper.followersCount && answer.followersCount) {
-      const arrow = rapper.followersCount < answer.followersCount ? " ↑" : " ↓";
-      displayText = rapper[cat] + arrow;
-    }
-    
-    span.className = "cell " + (isMatch ? "correct" : "wrong");
-    span.textContent = displayText;
-    td.appendChild(span);
-    tr.appendChild(td);
+    const status = genreResults[i];
+    span.className = "cell genre-cell " + (status === "correct" ? "correct" : "wrong");
+    span.textContent = g;
+    genreWrap.appendChild(span);
   });
+  genreTd.appendChild(genreWrap);
+  tr.appendChild(genreTd);
+
+  // Region: single cell, two-tier match
+  const regionTd = document.createElement("td");
+  regionTd.dataset.label = "Region";
+  const regionSpan = document.createElement("span");
+  const regionStatus = matchRegion(rapper.region, answer.region);
+  regionSpan.className = "cell " + (regionStatus === "correct" ? "correct" : regionStatus === "partial" ? "partial" : "wrong");
+  regionSpan.textContent = regionDisplay(rapper.region);
+  regionTd.appendChild(regionSpan);
+  tr.appendChild(regionTd);
+
+  // Biggest collab: exact match only
+  const collabTd = document.createElement("td");
+  collabTd.dataset.label = "Biggest Collab";
+  const collabSpan = document.createElement("span");
+  const collabMatch = rapper.biggestCollab.toLowerCase() === answer.biggestCollab.toLowerCase();
+  collabSpan.className = "cell " + (collabMatch ? "correct" : "wrong");
+  collabSpan.textContent = rapper.biggestCollab;
+  collabTd.appendChild(collabSpan);
+  tr.appendChild(collabTd);
+
+  // Label: exact match only
+  const labelTd = document.createElement("td");
+  labelTd.dataset.label = "Label Type";
+  const labelSpan = document.createElement("span");
+  const labelMatch = rapper.label === answer.label;
+  labelSpan.className = "cell " + (labelMatch ? "correct" : "wrong");
+  labelSpan.textContent = rapper.label;
+  labelTd.appendChild(labelSpan);
+  tr.appendChild(labelTd);
+
+  // Followers: exact match, with directional arrow hint when wrong.
+  // If either side has no follower count yet (data not filled in), show a
+  // neutral "N/A" cell instead of a false "correct" match.
+  const followersTd = document.createElement("td");
+  followersTd.dataset.label = "Followers";
+  const followersSpan = document.createElement("span");
+  const hasData = Boolean(rapper.followersCount) && Boolean(answer.followersCount);
+  const followersMatch = hasData && rapper.followers === answer.followers;
+  let followersText = rapper.followers;
+  if (hasData && !followersMatch) {
+    const arrow = rapper.followersCount < answer.followersCount ? " ↑" : " ↓";
+    followersText = rapper.followers + arrow;
+  }
+  followersSpan.className = "cell " + (!hasData ? "wrong" : followersMatch ? "correct" : "wrong");
+  followersSpan.textContent = followersText;
+  followersTd.appendChild(followersSpan);
+  tr.appendChild(followersTd);
 
   tbody.insertBefore(tr, tbody.firstChild);
 }
