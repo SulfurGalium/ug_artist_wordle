@@ -232,8 +232,13 @@ function endGame() {
 // Genre matching is order-independent: a guessed genre is "correct" (green)
 // if it appears anywhere in the answer's 3 genres, regardless of which slot
 // it's in. No partial/yellow tier for genre — position doesn't matter.
+// "Unknown" is a placeholder for missing data, not a real genre, so it can
+// never count as a match even if both sides happen to have it padded in.
 function matchGenres(guessGenres, answerGenres) {
-  return guessGenres.map(g => (answerGenres.includes(g) ? "correct" : "wrong"));
+  return guessGenres.map(g => {
+    if (g === "Unknown") return "wrong";
+    return answerGenres.includes(g) ? "correct" : "wrong";
+  });
 }
 
 // Region match is a single cell: full match (country + direction) is
